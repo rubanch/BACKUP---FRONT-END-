@@ -30,13 +30,16 @@ import fetchPdfReducer from '../reducers/LearnerReducer/FetchPdfReducer';
 import FetchRegisterReducer from '../reducers/LearnerReducer/FetchRegisterReducer';
 import { FetchRegisterApi } from '../middleware/LearnerMiddleware/FetchRegisterApi';
 import GetUserProfileReducer from '../reducers/LearnerReducer/GetUserProfileReducer';
-import UpdateUserProfileReducer from '../reducers/LearnerReducer/UpdateUserProfileReducer';
+// import UpdateUserProfileReducer from '../reducers/LearnerReducer/UpdateUserProfileReducer';
 // import fetchProfileData from '../middleware/LearnerMiddleware/GetUserProfileMiddleware';
 import { updateUserData } from '../middleware/LearnerMiddleware/UpdateUserProfileMiddleware';
 import PasswordChangeReducer from '../reducers/LearnerReducer/PasswordChangeReducer';
 import updatePasswordApi from '../middleware/LearnerMiddleware/PasswordChangeApi';
 // import { fetchProfileData } from '../middleware/LearnerMiddleware/GetUserProfileMiddleware';
 import { fetchProfileData } from '../middleware/LearnerMiddleware/GetUserProfileMiddleware';
+import UpdateUserProfileReducer from '../../src/reducers/LearnerReducer/UpdateUserProfileReducer';
+import UploaderDataReducer from '../reducers/LearnerReducer/UploaderDataReducer';
+
 
 
 
@@ -44,10 +47,8 @@ import { fetchProfileData } from '../middleware/LearnerMiddleware/GetUserProfile
 
 
 const rootReducer = combineReducers({
-  passwordchangereducer : PasswordChangeReducer,
-  getUseProfile: GetUserProfileReducer,
-  updateuserprofile:UpdateUserProfileReducer,
-  forgotPassword: ForgotPasswordreducer,
+ 
+   forgotPassword: ForgotPasswordreducer,
   user: userReducer,
   course: courseReducer,
   allcourse: AllcourseReducer,
@@ -61,14 +62,27 @@ const rootReducer = combineReducers({
   fetchPdf: fetchPdfReducer,
   enroll: enrollmentReducer,
   fetchlearner: FetchRegisterReducer,
+  uploaddataReducer:UploaderDataReducer,
+  passwordchangereducer : PasswordChangeReducer,
+  getUseProfile: GetUserProfileReducer,
+  updateuserprofile:UpdateUserProfileReducer,
+
 });
 
 
 const store = createStore(
 
   rootReducer,
-  applyMiddleware(thunk,   apiMiddleware,apiviewallcourse,loginUser,apiDeletecourse,UpdateCourse,RegisterApi,fetchEmailApi,VerifyEmailApi,LearnerGetCourse,LearnerPostEnroll,enrollCourseApi,FetchRegisterApi, updateUserData,  updatePasswordApi,fetchProfileData )
+  applyMiddleware(thunk,   apiMiddleware,apiviewallcourse,loginUser,apiDeletecourse,UpdateCourse,RegisterApi,fetchEmailApi,VerifyEmailApi,LearnerGetCourse,LearnerPostEnroll,enrollCourseApi,FetchRegisterApi,   updateUserData,   )
 );
 
 export default store;
 
+
+
+
+// updateUserData,  updatePasswordApi,fetchProfileData, 
+
+
+//fetch profile         middleware        successs
+//update user data           middleware      success

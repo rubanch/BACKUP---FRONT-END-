@@ -17,6 +17,7 @@ const intialState ={
  
  
  const  PasswordChangeReducer = (state= intialState, action) => {
+    
     switch(action.type)
     {
         case UPDATE_PASSWORD_REQUEST:

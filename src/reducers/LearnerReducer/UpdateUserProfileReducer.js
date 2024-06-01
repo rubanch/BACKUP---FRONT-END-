@@ -11,7 +11,8 @@ const initialstate ={
  
  
     const UpdateUserProfileReducer = (state = initialstate, action)=>{
-    switch(action.type)
+     console.log('Received action:', action); // Add this line to log the action
+     switch (action.type)
     {
         case PUT_USER_PROFILE_REQUEST:
             return{
@@ -40,6 +41,6 @@ const initialstate ={
     }
  
 }
+
  
- 
-export default UpdateUserProfileReducer;
+export default  UpdateUserProfileReducer;

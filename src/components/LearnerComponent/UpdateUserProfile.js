@@ -9,18 +9,35 @@ import { getUserProfileRequest } from '../../actions/LearnerAction/GetUpdateUser
 import { put_user_profile_request } from '../../actions/LearnerAction/UpdateUserProfileAction';
 import LearnerNavbar from '../LearnerComponent/LearnerNavbar';
 import { fetchUserData } from '../../middleware/LearnerMiddleware/GetUserProfileMiddleware';
+import { uploaderActionRequest } from '../../actions/LearnerAction/UploaderAction';
+
 
 
 
 function UpdateUserProfileComponent() {
   const dispatch = useDispatch();
 
-  const LearnerId = "2fe4c895-b718-4916-a328-ad8458cfbba9";
+
+
+  const [LearnerId] = useState(sessionStorage.getItem('ProfileId'));
+  // const LearnerId = '2fe4c895-b718-4916-a328-ad8458cfbba9';
+  
+  useEffect(()=>{
+    console.log("LearnerId", LearnerId)
+  },[LearnerId]);
+
+
   console.log("hi");
-  // const FetchProfile = useSelector((state) => state.getUseProfile.CredentialGet);
+  const FetchProfile = useSelector((state) => state.getUseProfile.CredentialGet);
+  console.log("fetch profile", FetchProfile);
+
+
+  const stateselector = useSelector((state) => state)
+  console.log("stateselector", stateselector);
+
 
   const [editInfo, setEditInfo] = useState({
-    profileId: "",
+    ProfileId: "",
     firstName: "",
     lastName: "",
     dob: "",
@@ -30,21 +47,15 @@ function UpdateUserProfileComponent() {
     profilePhoto: "",
   });
 
-  
   // console.log("fecsdfs", FetchProfile);
   // console.log("fetch profile ", FetchProfile);
 
+  // useEffect(() => {
+
+  dispatch(getUserProfileRequest(LearnerId));
 
 
-
-  useEffect(() => {
-
-    dispatch(getUserProfileRequest(LearnerId));  // dispatch
-   
-
-  },[]);
-
-
+  // }, []);
 
 
 
@@ -52,21 +63,18 @@ function UpdateUserProfileComponent() {
 
   // console.log("r");
 
-  const fetch = async (LearnerId) => {
-    try {
-      const userData = await fetchUserData(LearnerId);
-      console.log('Fetched user data:', userData);
-      setEditInfo(userData);
-    } catch (error) {
-      console.error('Error in fetch: ', error);
-    }
-  };
+
+
+
+
+
+
   // console.log("fetch", fetch);
 
 
 
 
-  
+
 
 
 
@@ -85,10 +93,29 @@ function UpdateUserProfileComponent() {
     return today.toISOString().split("T")[0];
   };
 
+  const fetch = async (LearnerId) => {
+    try {
+      const userData = await fetchUserData(LearnerId);
+      console.log('Fetched user data:', userData);
+
+      setEditInfo(userData);
+    } catch (error) {
+      console.error('Error in fetch: ', error);
+    }
+  };
+
+
   useEffect(() => {
+    //dispatch
     const data = fetch(LearnerId);
     setEditInfo(data);
+
+    dispatch(uploaderActionRequest("123456"));
+    console.log("custom hook", data)
   }, [setEditInfo]);
+
+
+
 
 
 
@@ -109,10 +136,10 @@ function UpdateUserProfileComponent() {
     }
 
 
-    
+
     try {
       // Dispatch the action to update the user profile
-      debugger;
+
       const response = await dispatch(put_user_profile_request(LearnerId, editInfo));
       // Check if the update was successful
 
@@ -141,10 +168,22 @@ function UpdateUserProfileComponent() {
 
 
 
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setEditInfo({ ...editInfo, [name]: value });
+  // };
+
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditInfo({ ...editInfo, [name]: value });
+    setEditInfo((prevEditInfo) => ({
+      ...prevEditInfo,
+      [name]: value
+    }));
   };
+
+
 
   const enableEditing = () => {
     setIsEditable(!isEditable);

@@ -20,16 +20,17 @@ const Loginpage = () => {
   const navigate=useNavigate(); 
 
   const isSuccessadmin  = useSelector((state) => state.user.isSuccessadmin);
+  console.log("isSuccessadmin",isSuccessadmin);
 
   const  isSuccessuser  = useSelector((state) => state.user.isSuccessuser)
-
+  console.log("isSuccessuser",isSuccessuser);
   useEffect(() => {
     if (isSuccessadmin) {
       navigate('/admindashboard'); // Navigate to the next page on success
     }
   }, [isSuccessadmin, navigate]);
 
-
+ 
   useEffect(() => {
     if (isSuccessuser) {
       

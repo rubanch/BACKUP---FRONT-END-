@@ -9,7 +9,9 @@ export const updateUserData =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
+    
     if (action.type === PUT_USER_PROFILE_REQUEST) {
+      console.log(action.type);
       try {
         // console.log("action api", action.payload.LearnerId);
         // console.log("action api pressing button", action.payload.editInfo);
@@ -26,7 +28,9 @@ export const updateUserData =
  
         console.log("api", response.data);
         // return response.data;
+        
         dispatch(put_user_profile_success(response.data));
+        
       } catch (error) {
         console.error("Error updating status: ", error);
         dispatch(put_user_profile_failure(error));

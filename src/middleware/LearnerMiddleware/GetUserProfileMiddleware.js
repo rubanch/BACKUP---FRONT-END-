@@ -110,7 +110,9 @@ export const fetchProfileData = ({ dispatch }) => (next) => async (action) => {
       console.log("response", response);
 
       if (response.data.statusCode === 200) {
-        dispatch(getUserProfileSuccess(response.data.data));
+        
+        dispatch(getUserProfileSuccess(response));
+        
       } else {
         console.error("No data received from API");
         dispatch(getUserProfileFailure()); // Assuming you want to dispatch without error data

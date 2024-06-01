@@ -24,6 +24,7 @@ import PDFViewer from '../components/LearnerComponent/PDFViewer';
 import PptViewerComponent from '../components/LearnerComponent/Pptxday';
 import UpdateUserProfileComponent from '../components/LearnerComponent/UpdateUserProfile';
 import PasswordChange from '../components/LearnerComponent/PasswordChange';
+import LearnerIdbyProfileId from '../middleware/LearnerMiddleware/LearnerIdbyProfileId';
 
 function Routing() {
   // const DrawerHeader = styled('div')(({ theme }) => ({
@@ -63,6 +64,8 @@ function Routing() {
         {/* <Route path="/individuallearner/:learnerId" element={<IndividualLearner />}></Route> */}
         {/* <Route path="/LearnerReport" element={<LearnerReportView/>}></Route> */}
         <Route path='/login' element={<Loginpage/>}></Route>
+        <Route path='/lp' element={<LearnerIdbyProfileId/>}/>
+        
         
       </Route>
 

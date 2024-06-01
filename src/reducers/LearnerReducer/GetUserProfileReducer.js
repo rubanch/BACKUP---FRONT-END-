@@ -15,6 +15,7 @@ const GetUserProfileReducer = (state = initialstateGET, action) => {
       };
  
     case GET_USER_PROFILE_SUCCESS:  
+    debugger;
     console.log("checkupdatereducer",action.payload);
       return {
         ...state,

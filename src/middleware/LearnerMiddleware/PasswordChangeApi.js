@@ -22,7 +22,7 @@ const updatePasswordApi = ({ dispatch }) => (next) => async (action) => {
  
         dispatch(UpdatePasswordSuccess(response.data))
         alert('Password has been successfully updated.');
-        window.location.reload();
+        // window.location.reload();
       }
       else {
         console.error("no data received");
